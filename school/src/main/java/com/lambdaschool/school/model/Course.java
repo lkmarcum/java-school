@@ -27,7 +27,7 @@ public class Course
     @JsonIgnoreProperties("courses")
     private Instructor instructor;
 
-    @ApiModelProperty(name = "students", value = "Students enrolled in the Course")
+    @ApiModelProperty(name = "students", value = "List of Students enrolled in the Course")
     @ManyToMany(mappedBy = "courses")
     @JsonIgnoreProperties("courses")
     private List<Student> students = new ArrayList<>();
