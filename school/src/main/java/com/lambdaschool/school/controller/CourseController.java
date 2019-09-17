@@ -1,11 +1,10 @@
 package com.lambdaschool.school.controller;
 
 import com.lambdaschool.school.model.Course;
+import com.lambdaschool.school.model.ErrorDetail;
 import com.lambdaschool.school.service.CourseService;
 import com.lambdaschool.school.view.CountStudentsInCourses;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +45,7 @@ public class CourseController
         return new ResponseEntity<>(myCourses, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Returns number of Students enrolled in each Course", response = CountStudentsInCourses.class, responseContainer = "ArrayList")
     @GetMapping(value = "/studcount", produces = {"application/json"})
     public ResponseEntity<?> getCountStudentsInCourses(HttpServletRequest request)
     {
@@ -55,8 +55,14 @@ public class CourseController
         return new ResponseEntity<>(myList, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Deletes Course tied to a given ID", response = void.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Course successfully deleted", response = void.class),
+            @ApiResponse(code = 404, message = "No Course found with that ID", response = ErrorDetail.class)
+    })
     @DeleteMapping("/courses/{courseid}")
-    public ResponseEntity<?> deleteCourseById(@PathVariable long courseid)
+    public ResponseEntity<?> deleteCourseById(@ApiParam(value = "Course ID", required = true, example = "1")
+                                                  @PathVariable long courseid)
     {
         courseService.delete(courseid);
         return new ResponseEntity<>(HttpStatus.OK);
