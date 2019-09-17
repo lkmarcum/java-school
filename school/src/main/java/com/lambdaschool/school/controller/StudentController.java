@@ -112,7 +112,7 @@ public class StudentController
     @ApiOperation(value = "Updates a Student with a given ID", response = void.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Students successfully updated", response = void.class),
-            @ApiResponse(code = 404, message = "No Student found with that ID", response = ErrorDetail.class)
+            @ApiResponse(code = 404, message = "No Student found with that ID", response = ErrorDetail.class),
             @ApiResponse(code = 500, message = "Error updating student", response = ErrorDetail.class)
     })
     @PutMapping(value = "/Student/{Studentid}")
