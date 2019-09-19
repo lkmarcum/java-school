@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import com.lambdaschool.school.exceptions.ResourceFoundException;
+
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,5 +62,19 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
         errorDetail.setDeveloperMessage("Rest Handler Not Found (check for valid URI)");
 
         return new ResponseEntity<>(errorDetail, null, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({ResourceFoundException.class})
+    public ResponseEntity<?> handleResourceFoundException(ResourceFoundException rfe, HttpServletRequest request)
+    {
+        ErrorDetail errorDetail = new ErrorDetail();
+        errorDetail.setTimestamp(new Date().getTime());
+        errorDetail.setStatus(HttpStatus.BAD_REQUEST.value());
+        errorDetail.setTitle("Unexpected Resource");
+        errorDetail.setDetail(rfe.getMessage());
+        errorDetail.setDeveloperMessage(rfe.getClass()
+                .getName());
+
+        return new ResponseEntity<>(errorDetail, null, HttpStatus.BAD_REQUEST);
     }
 }
