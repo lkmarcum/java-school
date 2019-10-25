@@ -1,0 +1,25 @@
+----- Login -----
+
+curl -X POST --user "lambda-client:lambda-secret" -d "grant_type=password&username=admin&password=password" https://lkmarcum-schools.herokuapp.com/login
+
+----- CourseCountroller -----
+
+curl -X GET -H "Accept: application/json" -H "Authorization: Bearer 7ba0c6a4-a94b-4983-ba29-09cef8728bbc" https://lkmarcum-schools.herokuapp.com/courses/courses
+
+curl -X GET -H "Accept: application/json" -H "Authorization: Bearer 7ba0c6a4-a94b-4983-ba29-09cef8728bbc" https://lkmarcum-schools.herokuapp.com/courses/studcount
+
+curl -X DELETE -H "Authorization: Bearer 7ba0c6a4-a94b-4983-ba29-09cef8728bbc" https://lkmarcum-schools.herokuapp.com/courses/courses/3
+
+----- StudentController -----
+
+curl -X GET -H "Accept: application/json" -H "Authorization: Bearer 7ba0c6a4-a94b-4983-ba29-09cef8728bbc" https://lkmarcum-schools.herokuapp.com/students/students
+
+curl -X GET -H "Accept: application/json" -H "Authorization: Bearer 7ba0c6a4-a94b-4983-ba29-09cef8728bbc" https://lkmarcum-schools.herokuapp.com/students/Student/1
+
+curl -X GET -H "Accept: application/json" -H "Authorization: Bearer 7ba0c6a4-a94b-4983-ba29-09cef8728bbc" https://lkmarcum-schools.herokuapp.com/students/student/namelike/Joh
+
+curl -X POST "https://lkmarcum-schools.herokuapp.com/students/Student" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"courses\": [ { \"courseid\": 1, \"coursename\": \"Etymology\", \"instructor\": { \"courses\": [ null ], \"instructid\": 1, \"instructname\": \"Bobby\" }, \"students\": [ null ] } ], \"studid\": 1, \"studname\": \"Pablo Escobar\"}"
+
+curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer 7ba0c6a4-a94b-4983-ba29-09cef8728bbc" -d "{ \"studname\": \"Larry\" }" https://lkmarcum-schools.herokuapp.com/students/Student/1
+
+curl -X DELETE -H "Authorization: Bearer 7ba0c6a4-a94b-4983-ba29-09cef8728bbc" https://lkmarcum-schools.herokuapp.com/students/Student/1

@@ -10,15 +10,15 @@ import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @EnableWebMvc
-@EnableJpaAuditing
+//@EnableJpaAuditing
 @SpringBootApplication
-public class SchoolApplication
+public class TestingSchoolApplication
 {
-    private static final Logger logger = LoggerFactory.getLogger(SchoolApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(TestingSchoolApplication.class);
 
     public static void main(String[] args)
     {
-        ApplicationContext ctx = SpringApplication.run(SchoolApplication.class, args);
+        ApplicationContext ctx = SpringApplication.run(TestingSchoolApplication.class, args);
 
         logger.info("In the main class");
         DispatcherServlet dispatcherServlet = (DispatcherServlet) ctx.getBean("dispatcherServlet");
